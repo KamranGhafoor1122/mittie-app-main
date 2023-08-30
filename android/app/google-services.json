@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "613565495770",
+    "project_id": "mittie-11a51",
+    "storage_bucket": "mittie-11a51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613565495770:android:16e3394f418b60820368e3",
+        "android_client_info": {
+          "package_name": "com.app.mittie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613565495770-3g8moc8inaq2hl98khquvlgrri0nruej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-gNPuBOoutjukM1RJ2yH5dVc3uiFwbxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613565495770-3g8moc8inaq2hl98khquvlgrri0nruej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
