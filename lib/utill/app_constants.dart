@@ -28,6 +28,7 @@ class AppConstants {
   static const String REGISTER_URI = 'api/v1/auth/registration';
   static const String LOGIN_URI = '/api/v1/auth/login';
   static const String GOOGLE_LOGIN_URI = 'api/v1/auth/loginWithGoogle';
+  static const String APPLE_LOGIN_URI = 'api/v1/auth/loginWithApple';
   static const String TOKEN_URI = '/api/v1/customer/cm-firebase-token';
   static const String PLACE_ORDER_URI = '/api/v1/customer/order/place';
   static const String ADDRESS_LIST_URI = '/api/v1/customer/address/list';

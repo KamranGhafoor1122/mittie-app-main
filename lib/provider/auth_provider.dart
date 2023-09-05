@@ -10,6 +10,8 @@ import 'package:emarket_user/view/screens/auth/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../helper/api_checker.dart';
 import '../localization/language_constrants.dart';
@@ -127,6 +129,56 @@ class AuthProvider with ChangeNotifier {
       _isLoading = false;
     notifyListeners();
   }
+
+
+  Future<void> appleLogin() async {
+    _isLoading = true;
+    _loginErrorMessage = '';
+
+    final credential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+
+
+
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    String email =  sharedPreferences.getString("apple_email");
+
+    if(email == null){
+    await  sharedPreferences.setString("apple_email", credential.email);
+    }
+
+
+    String appleEmail = sharedPreferences.getString("apple_email");
+
+
+    print(credential.identityToken);
+    print("Name; ${credential.givenName} ${credential.familyName}");
+    print("Email; ${appleEmail}");
+
+
+      var response = await authRepo.loginByApple(appleId: credential.identityToken,
+          email: appleEmail);
+
+      print("res; ${response.body}");
+      if (response.statusCode == 200) {
+        Map<String,dynamic> map = jsonDecode(response.body);
+        print("google res map : $map");
+        String token = map["token"];
+        authRepo.saveUserToken(token);
+        await authRepo.updateToken();
+
+      }
+
+    _isLoading = false;
+    notifyListeners();
+  }
+
+
 
 
   signout() async{

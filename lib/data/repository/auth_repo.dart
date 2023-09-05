@@ -93,6 +93,26 @@ class AuthRepo {
   }
 
 
+  Future<http.Response> loginByApple({String appleId,String email}) async {
+    try {
+      print(
+          "apple id: $appleId");
+      print("email $email");
+      var response = await http.post(
+          Uri.parse("${AppConstants.BASE_URL}${AppConstants.APPLE_LOGIN_URI}"),
+          body: <String,dynamic>{
+            "email":email,
+            "apple_id":appleId,
+          }
+      );
+      return response;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+
   Future<ApiResponse> updateToken() async {
     try {
       String _deviceToken = '';

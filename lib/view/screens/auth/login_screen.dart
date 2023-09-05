@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:country_code_picker/country_code.dart';
 import 'package:emarket_user/helper/responsive_helper.dart';
 import 'package:emarket_user/provider/localization_provider.dart';
@@ -19,6 +21,7 @@ import 'package:emarket_user/utill/images.dart';
 import 'package:emarket_user/view/base/custom_button.dart';
 import 'package:emarket_user/view/base/custom_snackbar.dart';
 import 'package:emarket_user/view/base/custom_text_field.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -324,6 +327,27 @@ class _LoginScreenState extends State<LoginScreen> {
                                              Navigator.pushNamedAndRemoveUntil(context, Routes.getMainRoute(), (route) => false);
                                             },
                                             child: Image.asset("assets/image/google.png",height: 50,width: 50,)),
+
+
+                                      Platform.isIOS ?
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          SizedBox(width: 12,),
+
+                                          InkWell(
+                                              onTap: () async {
+                                                await authProvider.appleLogin();
+                                                Navigator.pushNamedAndRemoveUntil(context, Routes.getMainRoute(), (route) => false);
+                                              },
+                                              child: SvgPicture.asset("assets/image/ic_apple.svg",height: 50,width: 50,)),
+                                        ],
+                                      ):Container(),
+
+
+
+
                                       /*  SizedBox(width: 25,),
 
                                         Image.asset("assets/image/fb.png",height: 50,width: 50,),
